@@ -1,0 +1,9 @@
+CREATE DATABASE IF NOT EXISTS site;
+USE site;
+CREATE TABLE IF NOT EXISTS usuario (id int NOT NULL  AUTO_INCREMENT, PRIMARY KEY(id), login VARCHAR(60), nome VARCHAR(255), email VARCHAR(255), senha VARCHAR(32), admin TINYINT);
+CREATE TABLE IF NOT EXISTS conteudo (id int NOT NULL AUTO_INCREMENT, PRIMARY KEY (id), titulo VARCHAR(150), descricao VARCHAR(255), texto TEXT, data_publi DATETIME, ativo TINYINT);
+CREATE TABLE IF NOT EXISTS galeria (id int NOT NULL AUTO_INCREMENT, PRIMARY KEY (id), conteudo_id int, FOREIGN KEY (conteudo_id) REFERENCES conteudo(id), tipo VARCHAR(60), arquivo VARCHAR(150));
+CREATE TABLE IF NOT EXISTS profile (id int NOT NULL AUTO_INCREMENT, PRIMARY KEY (id), usuario_id int, FOREIGN KEY (usuario_id) REFERENCES usuario(id), tipo VARCHAR(60), arquivo VARCHAR(150));
+CREATE TABLE IF NOT EXISTS mensagem (id int NOT NULL  AUTO_INCREMENT, PRIMARY KEY(id), nome VARCHAR(255), email VARCHAR(255), texto TEXT);
+
+//admin = 0 / normal = 1
